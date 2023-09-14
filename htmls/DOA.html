@@ -1,0 +1,58 @@
+<meta charset="UTF-8">
+
+<h1>本科毕业设计介绍</h1>
+<h2>题目：基于双域注意力机制的声音事件定位与检测系统设计与实现</h2>
+<h3>——之DOA任务介绍</h3>
+
+<h2>
+    <a href="https://www.aane.in/research/computational-audio-scene-analysis-casa/sound-event-localization-and-tracking">
+        三、什么是 DOA ？
+    </a>
+</h2>
+<div>
+    <p>
+        在介绍DOA之前，首先介绍一下什么是声源定位。
+        声源定位（Sound Event Localization and Tracking or Acoustic Source Localization）：
+        是一个相对的术语。比如在声音场景中，确定声音事件相对于麦克风的位置。
+    </p>
+    <h3>▶▶ 声源定位任务的示意图</h3>
+    <img src="images\DOA.png">
+    <p>如上图所示，对声源的精确定位通常需要三个元素：方位角<i>φ</i>、仰角<i>θ</i>和声源距离麦克风的距离<i>r</i>。</p>
+    <p>
+        然而在实际生活中，许多基于定位的应用只需要<strong>方位角和仰角</strong>信息，
+        这种仅需要<i>φ</i>和<i>θ</i>的定位技术称为<strong>波达方向（Direction of Arrival，DOA）估计</strong>。
+    </p>
+    <h3>▶▶ DOA 估计方法</h3>
+    <h4>▶▶▶▶ 传统基于参数的 DOA 估计方法</h4>
+    <ul>
+        <li>TDOA，time-difference-of-arrival</li>
+        <li>SRP，steered-response-power</li>
+        <li>MUSIC，multiple signal classification</li>
+        <li>ESPRIT，estimation of signal parameters via the rotational invariance technique</li>
+    </ul>
+    <p>
+        这些方法在算法复杂度、对于不同麦克风阵列结构的兼容性、在声学场景上的模型假设方面各不相同。
+        SEPRIT和MUSIC等子空间方法通用于阵列结构，可以产生高分辨率的DOA估计。
+    </p>
+    <p>
+        缺点：
+        <ul>
+            <li>需要预先估计活动源的数量，以便估计它们对应的DOA。</li>
+            <li>在低信噪比（SNR）和混响场景中的表现较差。</li>
+
+        </ul>
+    </p>
+    <h4>▶▶▶▶ 基于 DNN 的 DOA 估计方法</h4>
+    相比传统的DOA估计方法，基于DNN的DOA估计方法需要准备足够的训练数据。
+    <p>
+        优点：
+        <ul>
+            <li>
+                解决一些传统方法存在的缺陷。<br>
+                （1）在混响场景中的表现较好；<br>
+                （2）可以从数据中直接学习到活动源的数量。
+            </li>
+            <li>可以将DOA估计集成到端到端的声音分析和检测系统中。</li>
+        </ul>
+    </p>
+</div>

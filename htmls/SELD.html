@@ -1,0 +1,64 @@
+<meta charset="UTF-8">
+
+<h1>本科毕业设计介绍</h1>
+<h2>题目：基于双域注意力机制的声音事件定位与检测系统设计与实现</h2>
+<h3>——之SELD任务介绍</h3>
+<h2>
+    <a href="https://www.aane.in/research/computational-audio-scene-analysis-casa/sound-event-localization-detection-and-tracking">
+        什么是 SELD ？
+    </a>
+</h2>
+
+<!-- SELD -->
+<div>
+    声音事件定位与检测（Sound Event Localization and Detection，SELD）是一项联合任务，它有两个子任务：
+    <ul>
+        <li>声音事件检测（Sound Event Detection，SED）</li>
+        <li>声源事件定位和跟踪（Sound Event Localiaztion and Tracking）</li>
+    </ul>
+    <h3>▶▶ SELD 任务的示意图</h3>
+    <img src="images\SELD_task.png">
+    <p>
+        将一段多通道的音频作为输入，经过SELD系统的处理后将产生两个输出结果，
+        即图中的“DOA estimation”（DOA估计）和“Sound event detection”（SED）。
+    </p>
+    <p>
+        <strong>声音事件检测（SED）。</strong>
+        在如图所示的时间范围内，一共检测出了三种声音事件：SPEECH、DOG BARK、CAR，分别用不同的颜色表示以示区分。
+        在时间帧<i>t</i>内同时检测除了 SPEECH 和 DOG BARK 这两种声音事件，
+        这种在同一时间帧内存在同时活动的声音事件的现象我们称之为声音事件在时间上重叠。
+    </p>
+    <p>
+        <strong>DOA估计。</strong>
+        图中的“azimuth”和“elevation”分别为声源入射方向的方位角和仰角。
+        对声源的精确定位通常需要三个元素：方位角、仰角和声源距离麦克风的距离，
+        而上图这种只对方位角和仰角进行估计的方法称为DOA估计。
+    </p>
+    <h3>▶▶ SELD的应用</h3>
+    <p>
+        SELD输出可以自动描述社交和人类活动。机器可以将此描述用作上下文感知的。例如：<br>
+        （1）机器人和类人动物可以使用SELD进行导航并与周围环境自然互动。<br>
+        （2）智能会议室可以识别其他声音事件中的活动讲话者，并跟踪其相对于时间的运动。<br>
+        （3）扬声器的此跟踪位置可用于在电话会议或自动语音识别应用中使用波束赋形来增强语音。<br>
+        （4）根据世界卫生组织（World Health Organization）的数据，世界上有5％的人患有听力障碍。
+        在SELD的帮助下，我们可以建立助手，以帮助这些听力受损的人可视化声音，并使他们自然地与世界互动。
+    </p>
+    <h3>▶▶ SELDT面临的挑战</h3>
+    <ul>
+        <li>foley：在没有上下文环境或可视化场景时，对声音事件的识别模棱两可。</li>
+        <li>对一些声音事件起止时间的识别模棱两可，具有很强的主观性。</li>
+        <li>声音事件的类内可变性。</li>
+        <li>声音事件在时间或空间上相互重叠。</li>
+        <li>噪声、混响和低SNR场景。</li>
+    </ul>
+    <h3>▶▶ 采用联合评价指标</h3>
+    <P>为了解决数据关联问题，本次毕设使用DCASE 2020的联合评价指标：</P>
+    <ul>
+        <li>定位感知的检测（Location-aware detection）</li>
+        <li>检测感知的定位（Detection-aware localization）</li>
+    </ul>
+    具体详情，见论文：
+    <a href="https://ieeexplore.ieee.org/abstract/document/8937220/">
+        《Joint Measurement of Localization and Detection of Sound Events》
+    </a>
+</div>

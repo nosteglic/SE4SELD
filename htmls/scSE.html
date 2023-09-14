@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+
+<h1>本科毕业设计介绍</h1>
+<h2>题目：基于双域注意力机制的声音事件定位与检测系统设计与实现</h2>
+<h3>——之双域注意力机制模块 scSE</h3>
+
+<h2>scSE</h2>
+<h3>▶▶ scSE示意图</h3>
+<img src="images\scSE.png" width="800" height="400">
+<p>SE技术可以被认为是一种卷积增强技术，其目的是独立地学习空间和通道特征映射。 本次毕设使用的 scSE 由 cSE 和 sSE 组成。</p>
+
+<h2>cSE</h2>
+<h3>▶▶ cSE 示意图</h3>
+<img src="images\cSE.png" width="800" height="170">
+<h3>▶▶ cSE 过程</h3>
+<ol>
+    <li>卷积：<br><img src="images\cSE1.png" width="400" height="100"></li>
+    <li>squeeze：global information embedding。沿<i>H×W</i>压缩，全局空间信息被嵌入到向量z中，将一个channel上整个空间特征编码为一个全局特征。
+    这里采用最简单的全局平均池化。<br><img src="images\cSE2.png" width="400" height="70"></li>
+    <li>excitation：adaptive recalibration。让网络忽略信息较少的通道，而强调提供更有意义信息的通道。<br>
+    <img src="images\cSE3.png" width="700" height="200"></li>
+    <li>scale。<br><img src="images\cSE4.png" width="300" height="30"></li>
+</ol>
+<h3>▶▶ cSE 说明</h3>
+<p>
+    从squeeze操作后的信息中充分捕获通道相关性，两个准则：<br>
+    （1）it must be flexible (in particular, it must be capable of learning a nonlinear interaction between channels) <br>
+    灵活，学习通道间的非线性关系。<br>
+    （2）it must learn a non-mutually-exclusive relationship since we would like to ensure that
+    multiple channels are allowed to be emphasised opposed to one-hot activation<br>
+    学习的关系不是互斥的，因为这里允许多channel特征，而不是one-hot形式
+</p>
+<p>
+sigmoid：将激活范围压缩到[0,1]。这最后一步指出了每个通道的重要性以及它们如何重新缩放。
+</p>
+
+<h2>sSE</h2>
+<h3>▶▶ sSE示意图</h3>
+<ul>
+    <li>cSE为空间squeeze，通道excitation</li>
+    <li>sSE为通道squeeze，空间excitation</li>
+</ul>
+<img src="images\sSE.png" width="600" height="400">
+<h2>总结</h2>
+<img src="images\cSE_and_sSE.png" width="800" height="350">
